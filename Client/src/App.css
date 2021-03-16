@@ -1,9 +1,12 @@
 .App {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   text-align: left;
-  background-color: whitesmoke;
-  padding: 0px 25%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-image: linear-gradient(to bottom right, white, lightgrey, grey);
+  color: black;
 }
 
 .lds-dual-ring {

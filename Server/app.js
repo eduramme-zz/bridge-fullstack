@@ -26,8 +26,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/primes/:p1/:p2', (req, res) => {
-  const p1 = parseInt(req.params.p1);
-  const p2 = parseInt(req.params.p2);
+  let p1 = parseInt(req.params.p1);
+  let p2 = parseInt(req.params.p2);
+
+  if (p1 <= 1) {
+    p1 = 2;
+  }
+
+  if (p2 <= 1) {
+    p2 = 2;
+  }
 
   function getPrimes(min, max) {
     var sieve = [], i, j, primes = [];
@@ -45,7 +53,7 @@ app.get('/primes/:p1/:p2', (req, res) => {
 
   let primes = getPrimes(p1, p2);
 
-  res.status(200).send({
+  res.status(200).json({
     primes: primes
   });
 });

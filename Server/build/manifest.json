@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Prime Calculator",
+  "name": "Calculate primes between 2 specified numbers",
   "icons": [
     {
       "src": "favicon.ico",

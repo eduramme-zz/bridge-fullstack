@@ -2,7 +2,6 @@ import './App.css';
 import styled from 'styled-components';
 import React, { useState } from 'react';
 
-
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
@@ -21,41 +20,45 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-
-const Wrapper = styled.div`
+const Form = styled.div`
   padding: 10px 0;
-
 `
 
 const Title = styled.h1`
-  padding: 100px 0 0 10px;
+  padding: 100px 0 0;
+`
+
+const Description = styled.p`
+  padding: 0.2em 0.2em 1em;
+  color: #0f0f0f;
 `
 
 const Lista = styled.p`
-  padding: 10px 0 0;
 `
 
+const Wrapper = styled.p`
+  color: #0f0f0f;
+  padding: 0 50px;
+  max-width: 720px;
+
+`
 
 function App() {
-  const [loading, setLoading] = useState(false);
   const [primes, setPrimes] = useState(null);
   const [min, setMin] = useState();
   const [max, setMax] = useState();
-
-  console.log(min, max)
+  const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
     if(loading){
       return;
     }
     setLoading(true);
-    console.log(`/primes/${min}/${max}`);
     let response = await fetch(`/primes/${min}/${max}`);
 
     if (response.ok) {
       let json = await response.json();
       setPrimes(json.primes);
-      console.log(json)
     } else {
       alert("HTTP-Error: " + response.status);
     }
@@ -64,18 +67,29 @@ function App() {
 
   return (
     <div className="App">
-        <Title>Calcule seus números primos</Title>
-        <Wrapper>
-          <Input type='number' onChange={(e) => {setMin(parseInt(e.target.value))}}></Input>
-          <Input type='number' onChange={(e) => {setMax(parseInt(e.target.value))}}></Input>
-          <Button onClick={()=>{handleClick()}}>{
-            loading ?
-            <div class="lds-dual-ring"></div>
-            :
-            'Cálcular'
-          }</Button>
-        </Wrapper>
-        <Lista>Lista de números primos: {primes ? primes.join(', ') : ''}</Lista>      
+      <Wrapper>
+        <Title>Calcule seus números primos ☁️</Title>
+        <Description>
+          encontre os números primos entre dois determinados números
+        </Description>
+          <Form>
+            <Input type='number' onChange={(e) => {setMin(parseInt(e.target.value))}}></Input>
+            <Input type='number' onChange={(e) => {setMax(parseInt(e.target.value))}}></Input>
+            <Button onClick={()=>{handleClick()}}>
+              {
+                loading ?
+                <div class="lds-dual-ring"></div> :
+                'Cálcular'
+              }
+            </Button>
+          </Form>
+        <Lista>
+            Lista de números primos: <br /> <br />
+        </Lista>
+        <Lista>
+            {primes ? primes.join(', ') : ''}
+        </Lista>
+      </Wrapper>
     </div>
   );
 }
