@@ -1,16 +1,15 @@
-// var Primes = require('../models/primes');
-
 // Display list of all primes between the 2.
 exports.list_primes = (req, res) => {
   let p1 = parseInt(req.params.p1);
   let p2 = parseInt(req.params.p2);
 
+
   if (p1 <= 1) {
-    p1 = 2;
+    p1 = 1;
   }
 
   if (p2 <= 1) {
-    p2 = 2;
+    p2 = 1;
   }
 
   function getPrimes(min, max) {

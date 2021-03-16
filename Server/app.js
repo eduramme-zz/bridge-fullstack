@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var primesRouter = require('./routes/primes');
 var primes_controller = require('./controllers/primesController');
 var app = express();
 
@@ -40,7 +39,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// app.use('/primes', primesRouter);
 
 module.exports = app;
