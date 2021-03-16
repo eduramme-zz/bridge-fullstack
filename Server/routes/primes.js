@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const app = express();
+var primes_controller = require('../controllers/primesController');
 
-/* GET home page. */
-router.get('/primes', function(req, res, next) {
-  console.log("uou")
-  res.render('wuooooo');
-});
+router.get('/primes/:p1/:p2', primes_controller.list_primes);
 
 module.exports = router;
+
+
+
+
